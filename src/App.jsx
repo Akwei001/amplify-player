@@ -5,6 +5,7 @@ import awsconfig from './aws-exports';
 import { listSongs } from './graphql/queries';
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react-v1';
 import { updateSong } from './graphql/mutations';
+import ReactPlayer from 'react-player/lazy';
 import './App.css';
 
 Amplify.configure(awsconfig);
@@ -52,7 +53,7 @@ function App() {
     const songFilePath = songs[idx].filePath;
 
     try {
-      const fileAccessURL = Storage.get(songFilePath, { expires: 60 });
+      const fileAccessURL = await Storage.get(songFilePath, { expires: 60 });
       console.log('access url', fileAccessURL);
       setSongPlaying(idx);
       setAudioURL(fileAccessURL);
@@ -67,6 +68,7 @@ function App() {
   useEffect(() => {
     fetchSongs();
   }, []);
+  // console.log(audioURL);
 
   return (
     <div className='App'>
@@ -99,6 +101,18 @@ function App() {
                 </div>
                 <div className='songDescription'>{song.description}</div>
               </div>
+
+              {songPlaying === idx ? (
+                <div className='ourAudioPlayer'>
+                  <ReactPlayer
+                    url={audioURL}
+                    controls
+                    playing
+                    height='50px'
+                    onPause={() => toggleSong(idx)}
+                  />
+                </div>
+              ) : null}
             </div>
           );
         })}
