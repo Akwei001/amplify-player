@@ -44,5 +44,12 @@
         }
       }
     }
+  },
+  "storage": {
+    "songstorage1": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

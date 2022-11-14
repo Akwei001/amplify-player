@@ -17,6 +17,9 @@
       },
       "api": {
         "amplifyplayer": {}
+      },
+      "storage": {
+        "songstorage1": {}
       }
     }
   }
