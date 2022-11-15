@@ -7,7 +7,8 @@ import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react-v1';
 import { updateSong } from './graphql/mutations';
 import ReactPlayer from 'react-player/lazy';
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
-import { MdFavorite } from 'react-icons/md';
+import { MdFavorite, MdPublish } from 'react-icons/md';
+import { IoIosAddCircle } from 'react-icons/io';
 import './App.css';
 
 Amplify.configure(awsconfig);
@@ -16,6 +17,7 @@ function App() {
   const [songs, setSongs] = useState([]);
   const [songPlaying, setSongPlaying] = useState('');
   const [audioURL, setAudioURL] = useState('');
+  const [showAddSong, setShowAddNewSong] = useState(false);
 
   const fetchSongs = async () => {
     try {
@@ -118,9 +120,40 @@ function App() {
             </div>
           );
         })}
+        {showAddSong ? (
+          <Addsong
+            onUpload={() => {
+              setShowAddNewSong(false);
+            }}
+          />
+        ) : (
+          <IoIosAddCircle onClick={() => setShowAddNewSong(true)} />
+        )}
       </div>
     </div>
   );
 }
 
 export default withAuthenticator(App);
+
+const Addsong = ({ onUpload }) => {
+  const uploadSong = async () => {
+    //Upload the song
+    onUpload();
+  };
+  return (
+    <div className='newSong'>
+      <textarea label='title' placeholder='Title' />
+
+      <textarea
+        label='
+    artist'
+        placeholder='Artist'
+      />
+      <textarea label='Description' placeholder='Description' />
+      <div onClick={uploadSong}>
+        <MdPublish />
+      </div>
+    </div>
+  );
+};
