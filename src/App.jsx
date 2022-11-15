@@ -6,6 +6,8 @@ import { listSongs } from './graphql/queries';
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react-v1';
 import { updateSong } from './graphql/mutations';
 import ReactPlayer from 'react-player/lazy';
+import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
+import { MdFavorite } from 'react-icons/md';
 import './App.css';
 
 Amplify.configure(awsconfig);
@@ -82,7 +84,7 @@ function App() {
             <div key={`song${idx}`}>
               <div className='songCard'>
                 <div aria-label='play' onClick={() => toggleSong(idx)}>
-                  {songPlaying === idx ? 'Pause Icon' : 'Play Icon'}
+                  {songPlaying === idx ? <BsPauseFill /> : <BsPlayFill />}
                 </div>
                 <div>
                   <div className='songTitle'>{song.title}</div>
@@ -95,7 +97,7 @@ function App() {
                       addLike(idx);
                     }}
                   >
-                    Favourite Icon
+                    <MdFavorite />
                   </div>
                   {song.likes}
                 </div>
