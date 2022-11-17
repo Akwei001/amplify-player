@@ -125,6 +125,7 @@ function App() {
           <Addsong
             onUpload={() => {
               setShowAddNewSong(false);
+              fetchSongs();
             }}
           />
         ) : (
@@ -144,10 +145,14 @@ const Addsong = ({ onUpload }) => {
   const uploadSong = async () => {
     //Upload the song
     console.log('songData', songData);
+    console.log('mp3Data', mp3Data);
     const { title, description, owner } = songData;
 
     const { key } = await Storage.put(`${uuid()}.mp3`, mp3Data, {
       contentType: 'audio/mp3',
+      progressCallback(progress) {
+        console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
+      },
     });
 
     const createSongInput = {
@@ -156,7 +161,7 @@ const Addsong = ({ onUpload }) => {
       description,
       owner,
       filePath: key,
-      like: 0,
+      likes: 0,
     };
 
     await API.graphql(graphqlOperation(createSong, { input: createSongInput }));
