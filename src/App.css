@@ -1,3 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+@font-face {
+  font-family: 'ChicagoFont';
+  src: url('https://dangasson.github.io/Resources/Fonts/ChicagoFLF.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #a5a59b, #d6d5d0);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: 'ChicagoFont', sans-serif;
+}
+
+/* audio::-webkit-media-controls-panel {
+  background-color: #bebeb9;
+  opacity: 100%;
+} */
+
 .App {
   text-align: center;
 }
@@ -24,12 +53,15 @@
 .songList {
   display: flex;
   flex-direction: column;
+  background-color: rebeccapurple;
 }
 
 .songCard {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 5px;
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.08);
 }
 
 .songTitle {
