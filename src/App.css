@@ -15,7 +15,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #a5a59b, #d6d5d0);
+  background: linear-gradient(200deg, #a5a59b, #d6d5d0);
   display: grid;
   place-items: center;
   text-align: center;
