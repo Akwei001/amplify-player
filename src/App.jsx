@@ -79,23 +79,28 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <AmplifySignOut />
-        <h2>App Content</h2>
+        {/* <h2></h2> */}
       </header>
       <div className='songList'>
         {songs.map((song, idx) => {
           return (
             <div key={`song${idx}`}>
               <div className='songCard'>
-                <div aria-label='play' onClick={() => toggleSong(idx)}>
+                <div
+                  className='play'
+                  aria-label='play'
+                  onClick={() => toggleSong(idx)}
+                >
                   {songPlaying === idx ? <BsPauseFill /> : <BsPlayFill />}
                 </div>
                 <div>
                   <div className='songTitle'>{song.title}</div>
-                  <div className='songOwner'>{song.owner}</div>
+                  {/* <div className='songOwner'>{song.owner}</div> */}
                 </div>
                 <div>
                   <div
                     aria-label='like'
+                    className='like'
                     onClick={() => {
                       addLike(idx);
                     }}
