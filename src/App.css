@@ -59,7 +59,8 @@ body {
 }
 
 .songCard {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   padding: 20px;
   /* margin: 5px; */
@@ -67,21 +68,15 @@ body {
   background: linear-gradient(100deg, #a5a59b, #d6d5d0);
   border: 2px solid rgba(0, 0, 0, 0.08);
 }
-.songTitleText {
-  border: 2px solid yellow;
-}
+
 .songTitle {
   font-weight: bold;
-  border: 2px solid red;
 }
 
 .play {
-  /* display: flex; */
-  border: 2px solid blue;
 }
 
 .like {
-  border: 2px solid green;
 }
 
 .ourAudioPlayer {

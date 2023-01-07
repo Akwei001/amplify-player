@@ -110,19 +110,30 @@ function App() {
                   {song.likes}
                 </div>
                 <div className='songDescription'>{song.description}</div>
+                {songPlaying === idx ? (
+                  <div className='ourAudioPlayer'>
+                    <ReactPlayer
+                      url={audioURL}
+                      controls
+                      playing
+                      height='50px'
+                      // onPause={() => toggleSong(idx)}
+                    />
+                  </div>
+                ) : null}
               </div>
 
-              {songPlaying === idx ? (
+              {/* {songPlaying === idx ? (
                 <div className='ourAudioPlayer'>
                   <ReactPlayer
                     url={audioURL}
                     controls
                     playing
                     height='50px'
-                    onPause={() => toggleSong(idx)}
+                    // onPause={() => toggleSong(idx)}
                   />
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           );
         })}
@@ -201,7 +212,9 @@ const Addsong = ({ onUpload }) => {
         accept='audio/mp3'
         onChange={(e) => setMp3Data(e.target.files[0])}
       />
-
+      <div>
+        close
+      </div>
       <div onClick={uploadSong}>
         <MdPublish />
       </div>
