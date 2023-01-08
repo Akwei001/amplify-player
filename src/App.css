@@ -63,10 +63,11 @@ body {
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   padding: 20px;
-  /* margin: 5px; */
-  border-radius: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  /* border-radius: 10px; */
   background: linear-gradient(100deg, #a5a59b, #d6d5d0);
-  border: 2px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid white;
 }
 
 .songTitle {
