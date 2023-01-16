@@ -84,3 +84,12 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.newSong {
+  padding: 20px;
+  background-color: aquamarine;
+}
+
+.input-button {
+  background-color: yellow;
+}
