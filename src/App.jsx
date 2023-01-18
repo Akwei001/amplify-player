@@ -148,6 +148,7 @@ function App() {
           <IoIosAddCircle onClick={() => setShowAddNewSong(true)} />
         )}
       </div>
+      <div>Add Song</div>
     </div>
   );
 }
