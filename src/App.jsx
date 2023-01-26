@@ -214,9 +214,10 @@ const Addsong = ({ onUpload }) => {
         accept='audio/mp3'
         onChange={(e) => setMp3Data(e.target.files[0])}
       />
-      <div>close</div>
-      <div onClick={uploadSong}>
+      <div className='close-button'>Close</div>
+      <div className='upload' onClick={uploadSong}>
         <MdPublish />
+        Upload
       </div>
     </div>
   );
