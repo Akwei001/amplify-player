@@ -4,12 +4,12 @@ import { API, graphqlOperation, Storage } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { listSongs } from './graphql/queries';
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react-v1';
-import { updateSong, createSong } from './graphql/mutations';
+import { updateSong } from './graphql/mutations';
 import ReactPlayer from 'react-player/lazy';
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
-import { MdFavorite, MdPublish } from 'react-icons/md';
+import { MdFavorite } from 'react-icons/md';
 import { IoIosAddCircle } from 'react-icons/io';
-import { v4 as uuid } from 'uuid';
+import Addsong from './components/Addsong';
 import './App.css';
 
 Amplify.configure(awsconfig);
@@ -122,18 +122,6 @@ function App() {
                   </div>
                 ) : null}
               </div>
-
-              {/* {songPlaying === idx ? (
-                <div className='ourAudioPlayer'>
-                  <ReactPlayer
-                    url={audioURL}
-                    controls
-                    playing
-                    height='50px'
-                    // onPause={() => toggleSong(idx)}
-                  />
-                </div>
-              ) : null} */}
             </div>
           );
         })}
@@ -149,76 +137,9 @@ function App() {
         )}
       </div>
       <div>Add Song</div>
+      <Addsong />
     </div>
   );
 }
 
 export default withAuthenticator(App);
-
-const Addsong = ({ onUpload }) => {
-  const [songData, setSongData] = useState({});
-  const [mp3Data, setMp3Data] = useState();
-
-  const uploadSong = async () => {
-    //Upload the song
-    console.log('songData', songData);
-    console.log('mp3Data', mp3Data);
-    const { title, description, owner } = songData;
-
-    const { key } = await Storage.put(`${uuid()}.mp3`, mp3Data, {
-      contentType: 'audio/mp3',
-      progressCallback(progress) {
-        console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
-      },
-    });
-
-    const createSongInput = {
-      id: uuid(),
-      title,
-      description,
-      owner,
-      filePath: key,
-      likes: 0,
-    };
-
-    await API.graphql(graphqlOperation(createSong, { input: createSongInput }));
-
-    onUpload();
-  };
-  return (
-    <div className='newSong'>
-      <textarea
-        label='title'
-        placeholder='Title'
-        value={songData.title}
-        onChange={(e) => setSongData({ ...songData, title: e.target.value })}
-      />
-      <textarea
-        label='artist'
-        placeholder='Artist'
-        value={songData.artist}
-        onChange={(e) => setSongData({ ...songData, owner: e.target.value })}
-      />
-      <textarea
-        label='description'
-        placeholder='Description'
-        value={songData.description}
-        onChange={(e) =>
-          setSongData({ ...songData, description: e.target.value })
-        }
-      />
-
-      <input
-        className='input-button'
-        type='file'
-        accept='audio/mp3'
-        onChange={(e) => setMp3Data(e.target.files[0])}
-      />
-      <div className='close-button'>Close</div>
-      <div className='upload' onClick={uploadSong}>
-        <MdPublish />
-        Upload
-      </div>
-    </div>
-  );
-};
