@@ -137,7 +137,7 @@ function App() {
         )}
       </div>
       <div>Add Song</div>
-      <Addsong />
+      {/* <Addsong /> */}
     </div>
   );
 }

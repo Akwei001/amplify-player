@@ -87,13 +87,6 @@ body {
   justify-content: center;
 }
 
-.newSong {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  background-color: white;
-}
-
 .close-button {
   margin-top: 10px;
 }
@@ -108,4 +101,31 @@ body {
   background: linear-gradient(100deg, #a5a59b, #d6d5d0);
   padding: 10px;
   margin-left: 5px;
+}
+
+.newSong {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.progress-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: black;
+}
+
+.progress-text {
+  margin-top: 10px;
+  color: black;
 }

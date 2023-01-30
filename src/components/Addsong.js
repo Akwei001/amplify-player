@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 const Addsong = ({ onUpload }) => {
   const [songData, setSongData] = useState({});
   const [mp3Data, setMp3Data] = useState();
+  const [uploadPercent, setUploadPercent] = useState(0);
 
   const uploadSong = async () => {
     //Upload the song
@@ -21,7 +22,7 @@ const Addsong = ({ onUpload }) => {
     const { key } = await Storage.put(`${uuid()}.mp3`, mp3Data, {
       contentType: 'audio/mp3',
       progressCallback(progress) {
-        console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
+        setUploadPercent(Math.round((progress.loaded / progress.total) * 100));
       },
     });
 
@@ -69,6 +70,15 @@ const Addsong = ({ onUpload }) => {
       />
       <div className='close-button'>Close</div>
       <div className='upload' onClick={uploadSong}>
+        {uploadPercent > 0 && (
+          <div className='progress-container'>
+            <div
+              className='progress-bar'
+              style={{ width: `${uploadPercent}%` }}
+            />
+            <p className='progress-text'>{uploadPercent}%</p>
+          </div>
+        )}
         <MdPublish />
         Upload
       </div>
