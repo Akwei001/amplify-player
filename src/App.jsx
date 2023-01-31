@@ -31,6 +31,26 @@ function App() {
     }
   };
 
+  const deleteSong = async (idx) => {
+    try {
+      const song = songs[idx];
+      const { id, filePath } = song;
+
+      // Delete the song from the app's GraphQL API
+      await API.graphql(graphqlOperation(deleteSong, { input: { id } }));
+
+      // Delete the song file from AWS S3
+      await Storage.remove(filePath);
+
+      // Remove the song from the songs state
+      const songList = [...songs];
+      songList.splice(idx, 1);
+      setSongs(songList);
+    } catch (error) {
+      console.log('error on deleting song', error);
+    }
+  };
+
   const addLike = async (idx) => {
     try {
       const song = songs[idx];
@@ -73,7 +93,6 @@ function App() {
   useEffect(() => {
     fetchSongs();
   }, []);
-  // console.log(audioURL);
 
   return (
     <div className='App'>
@@ -110,6 +129,9 @@ function App() {
                   {song.likes}
                 </div>
                 <div className='songDescription'>{song.description}</div>
+                <div className='delete'>
+                  <button onClick={() => deleteSong(idx)}>Delete Song</button>
+                </div>
                 {songPlaying === idx ? (
                   <div className='ourAudioPlayer'>
                     <ReactPlayer
