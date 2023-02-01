@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player/lazy';
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
 import { MdFavorite } from 'react-icons/md';
 import { IoIosAddCircle } from 'react-icons/io';
+import { AiOutlineDelete } from 'react-icons/ai';
 import Addsong from './components/Addsong';
 import './App.css';
 
@@ -133,7 +134,9 @@ function App() {
                 </div>
                 <div className='songDescription'>{song.description}</div>
                 <div className='delete'>
-                  <button onClick={() => deleteSong(idx)}>Delete Song</button>
+                  <div onClick={() => deleteSong(idx)}>
+                    <AiOutlineDelete />
+                  </div>
                 </div>
                 {songPlaying === idx ? (
                   <div className='ourAudioPlayer'>

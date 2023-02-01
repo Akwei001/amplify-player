@@ -64,7 +64,7 @@ const Addsong = ({ onUpload }) => {
         accept='audio/mp3'
         onChange={(e) => setMp3Data(e.target.files[0])}
       />
-      <div className='close-button'>Close</div>
+      {/* <div className='close-button'>Close</div> */}
       <div className='upload' onClick={uploadSong}>
         {uploadPercent > 0 && (
           <div className='progress-container'>
