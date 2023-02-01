@@ -35,9 +35,10 @@ function App() {
     try {
       const song = songs[idx];
       const { id, filePath } = song;
-
+      console.log(song);
       // Delete the song from the app's GraphQL API
       await API.graphql(graphqlOperation(deleteSong, { input: { id } }));
+      // await API.graphql(graphqlOperation(deleteSong, { input: id }));
 
       // Delete the song file from AWS S3
       await Storage.remove(filePath);
@@ -49,6 +50,8 @@ function App() {
     } catch (error) {
       console.log('error on deleting song', error);
     }
+
+    // deleteSong();
   };
 
   const addLike = async (idx) => {

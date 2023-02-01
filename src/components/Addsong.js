@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-
 import { API, graphqlOperation, Storage } from 'aws-amplify';
-
 import { createSong } from '../graphql/mutations';
-
 import { MdPublish } from 'react-icons/md';
-
 import { v4 as uuid } from 'uuid';
 
 const Addsong = ({ onUpload }) => {
