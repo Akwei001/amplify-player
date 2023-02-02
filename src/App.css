@@ -52,6 +52,25 @@ body {
   color: #61dafb;
 }
 
+@media (max-width: 767px) {
+  .songCard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .songTitle {
+    font-size: 1.2em;
+  }
+
+  .ourAudioPlayer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .input-button,
+  .upload {
+    padding: 5px;
+  }
+}
+
 .songList {
   /* display: flex;
   flex-direction: column;
