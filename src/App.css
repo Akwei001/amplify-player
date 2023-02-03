@@ -16,16 +16,10 @@
 
 body {
   background: rgb(241, 237, 237);
-  /* display: grid;
-  place-items: center; */
+
   text-align: center;
   font-family: 'ChicagoFont', sans-serif;
 }
-
-/* audio::-webkit-media-controls-panel {
-  background-color: #bebeb9;
-  opacity: 100%;
-} */
 
 .App {
   text-align: center;
@@ -69,12 +63,6 @@ body {
   .upload {
     padding: 5px;
   }
-}
-
-.songList {
-  /* display: flex;
-  flex-direction: column;
-  background-color: rebeccapurple; */
 }
 
 .songCard {
